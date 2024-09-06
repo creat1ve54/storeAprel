@@ -1,0 +1,256 @@
+{
+    "catalog": [
+        {
+            "id": 1,
+            "name": "Gradient Graphic T-shirt",
+            "imgSrc": "1",
+            "descr": "This graphic ",
+            "price": 145,
+            "oldPrice": null,
+            "sale": null,
+            "options": {
+                "size": "S",
+                "color": "Blue",
+                "clothing": "T-shirt"
+            }
+        },
+        {
+            "id": 2,
+            "name": "Polo with Tipping DetailsT",
+            "imgSrc": "2",
+            "descr": "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
+            "price": 180,
+            "oldPrice": null,
+            "sale": null,
+            "options": {
+                "size": "M",
+                "color": "Purple",
+                "clothing": "Polo"
+            }
+        },
+        {
+            "id": 3,
+            "name": "Black Striped T-shirt",
+            "imgSrc": "3",
+            "descr": "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
+            "price": 120,
+            "oldPrice": 150,
+            "sale": 30,
+            "options": {
+                "size": "S",
+                "color": "White",
+                "clothing": "T-shirt"
+            }
+        },
+        {
+            "id": 4,
+            "name": "Skinny Fit Jeans",
+            "imgSrc": "4",
+            "descr": "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
+            "price": 240,
+            "oldPrice": 260,
+            "sale": 20,
+            "options": {
+                "size": "L",
+                "color": "Blue",
+                "clothing": "Jeans"
+            }
+        },
+        {
+            "id": 5,
+            "name": "Checkered Shirt",
+            "imgSrc": "5",
+            "descr": "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
+            "price": 180,
+            "oldPrice": null,
+            "sale": null,
+            "options": {
+                "size": "L",
+                "color": "Blue",
+                "clothing": "Jeans"
+            }
+        },
+        {
+            "id": 6,
+            "name": "Sleeve Striped T-shirt",
+            "imgSrc": "6",
+            "descr": "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
+            "price": 130,
+            "oldPrice": 160,
+            "sale": 30,
+            "options": {
+                "size": "S",
+                "color": "Orange",
+                "clothing": "T-shirt"
+            }
+        },
+        {
+            "id": 7,
+            "name": "Vertical Striped Shirt",
+            "imgSrc": "7",
+            "descr": "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
+            "price": 212,
+            "oldPrice": 232,
+            "sale": 20,
+            "options": {
+                "size": "L",
+                "color": "Green",
+                "clothing": "Shirt"
+            }
+        },
+        {
+            "id": 8,
+            "name": "Courage Graphic T-shirt",
+            "imgSrc": "8",
+            "descr": "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
+            "price": 145,
+            "oldPrice": null,
+            "sale": null,
+            "options": {
+                "size": "L",
+                "color": "Orange",
+                "clothing": "T-shirt"
+            }
+        },
+        {
+            "id": 9,
+            "name": "Loose Fit Bermuda Shorts",
+            "imgSrc": "9",
+            "descr": "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
+            "price": 80,
+            "oldPrice": null,
+            "sale": null,
+            "options": {
+                "size": "XL",
+                "color": "Blue",
+                "clothing": "Shorts"
+            }
+        },
+        {
+            "id": 10,
+            "name": "Gradient Graphic T-shirt",
+            "imgSrc": "1",
+            "descr": "This graphic ",
+            "price": 145,
+            "oldPrice": null,
+            "sale": null,
+            "options": {
+                "size": "S",
+                "color": "Blue",
+                "clothing": "T-shirt"
+            }
+        },
+        {
+            "id": 11,
+            "name": "Polo with Tipping DetailsT",
+            "imgSrc": "2",
+            "descr": "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
+            "price": 180,
+            "oldPrice": null,
+            "sale": null,
+            "options": {
+                "size": "M",
+                "color": "Purple",
+                "clothing": "Polo"
+            }
+        },
+        {
+            "id": 12,
+            "name": "Black Striped T-shirt",
+            "imgSrc": "3",
+            "descr": "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
+            "price": 120,
+            "oldPrice": 150,
+            "sale": 30,
+            "options": {
+                "size": "S",
+                "color": "White",
+                "clothing": "T-shirt"
+            }
+        },
+        {
+            "id": 13,
+            "name": "Skinny Fit Jeans",
+            "imgSrc": "4",
+            "descr": "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
+            "price": 240,
+            "oldPrice": 260,
+            "sale": 20,
+            "options": {
+                "size": "L",
+                "color": "Blue",
+                "clothing": "Jeans"
+            }
+        },
+        {
+            "id": 14,
+            "name": "Checkered Shirt",
+            "imgSrc": "5",
+            "descr": "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
+            "price": 180,
+            "oldPrice": null,
+            "sale": null,
+            "options": {
+                "size": "L",
+                "color": "Blue",
+                "clothing": "Jeans"
+            }
+        },
+        {
+            "id": 15,
+            "name": "Sleeve Striped T-shirt",
+            "imgSrc": "6",
+            "descr": "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
+            "price": 130,
+            "oldPrice": 160,
+            "sale": 30,
+            "options": {
+                "size": "S",
+                "color": "Orange",
+                "clothing": "T-shirt"
+            }
+        },
+        {
+            "id": 16,
+            "name": "Vertical Striped Shirt",
+            "imgSrc": "7",
+            "descr": "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
+            "price": 212,
+            "oldPrice": 232,
+            "sale": 20,
+            "options": {
+                "size": "L",
+                "color": "Green",
+                "clothing": "Shirt"
+            }
+        },
+        {
+            "id": 17,
+            "name": "Courage Graphic T-shirt",
+            "imgSrc": "8",
+            "descr": "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
+            "price": 145,
+            "oldPrice": null,
+            "sale": null,
+            "options": {
+                "size": "L",
+                "color": "Orange",
+                "clothing": "T-shirt"
+            }
+        },
+        {
+            "id": 18,
+            "name": "Loose Fit Bermuda Shorts",
+            "imgSrc": "9",
+            "descr": "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
+            "price": 80,
+            "oldPrice": null,
+            "sale": null,
+            "options": {
+                "size": "XL",
+                "color": "Blue",
+                "clothing": "Shorts"
+            }
+        }
+    ]
+  }

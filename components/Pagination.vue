@@ -33,6 +33,7 @@ function changePage(pageNumber: number) {
 .pagination {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 2px;
   &__item {
     padding: 10px 17px;

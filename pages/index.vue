@@ -11,11 +11,8 @@
         </div>
         <div class="flex__right">
           <div class="sort">
-            <div class="sort__title">Casual</div>
-            <Search
-              @onSearch="onSearch"
-              :filmsInit="filmsInstallatios.films"
-            />
+            <div class="sort__title">Films</div>
+            <Search @onSearch="onSearch" :filmsInit="filmsInstallatios.films" />
             <div class="sort__btns">
               <label class="sort__btn">
                 <input @click="changeGrid" type="radio" name="view" checked />
@@ -69,7 +66,7 @@
                 : 'films__items films__items--card'
             "
           >
-            <!-- <Item v-for="film in films" :film="film" /> -->
+            <Item v-for="film in films" :film="film" />
           </div>
           <Pagination
             :currentPage="currentPage"
@@ -103,24 +100,22 @@ const itemsPerPage = ref(10);
 
 const filmsInit = ref<IFilm[]>(filmsInstallatios.films);
 
-
-
 const options = ref({
   search: "",
   ranking: [0, 100],
-  genres:  <IGenre[]>[],
+  genres: <IGenre[]>[],
   episodes: <IEpisodes[]>[],
 });
 
 const films = computed(() => {
+  let pageLength = Math.ceil(filmsInit.value.length / itemsPerPage.value);
+
+  if (pageLength <= currentPage.value) {
+    changePage(1);
+  }   
+
   const startIndex = (currentPage.value - 1) * itemsPerPage.value;
   const endIndex = startIndex + itemsPerPage.value;
-
-  console.log(itemsPerPage.value);
-  
-  // console.log(startIndex);
-  // console.log(endIndex);
-  
 
   return filmsInit.value.slice(startIndex, endIndex);
 });
@@ -137,11 +132,15 @@ const onSearch = (text: string) => {
 const onOptions = (item: IFilm[]) => {
   filmsInit.value = filmsInstallatios.films.filter((item: IFilm) => {
     const matchesGenres = options.value.genres.length
-      ? options.value.genres.some((genre) => item.genres.some((genreItem) => genre.name === genreItem))
+      ? options.value.genres.some((genre) =>
+          item.genres.some((genreItem) => genre.name === genreItem)
+        )
       : true;
 
     const matchesEpisodes = options.value.episodes.length
-      ? options.value.episodes.some((episodes) => episodes.name === item.episodes)
+      ? options.value.episodes.some(
+          (episodes) => episodes.name === item.episodes
+        )
       : true;
 
     const matchesSearchQuery = item.title
@@ -152,7 +151,9 @@ const onOptions = (item: IFilm[]) => {
       item.ranking >= options.value.ranking[0] &&
       item.ranking <= options.value.ranking[1];
 
-    return  matchesEpisodes  && matchesGenres && matchesSearchQuery && matchesRanking;
+    return (
+      matchesEpisodes && matchesGenres && matchesSearchQuery && matchesRanking
+    );
   });
 };
 
@@ -204,6 +205,22 @@ watch(currentPage, () => {
           height: 200px;
           width: 200px;
         }
+      }
+    }
+  }
+
+  @include table {
+    .flex {
+      flex-direction: column;
+      &__left {
+        // display: none;
+        flex: auto;
+      }
+    }
+
+    &__items {
+      &--card {
+        grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
       }
     }
   }

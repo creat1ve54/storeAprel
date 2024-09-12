@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// export const url = "http://localhost:3000";
 export const url = "https://anime-db.p.rapidapi.com/";
 
 
@@ -18,6 +17,8 @@ const config = {
 
 export const filmsAPI = {
   getFilms() {
-    // return instance.get("/anime?page=1&size=100", config);
+    return instance.get("/anime?page=1&size=100", config);
   },
 };
+
+

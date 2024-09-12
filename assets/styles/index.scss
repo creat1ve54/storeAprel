@@ -1,7 +1,6 @@
 @import "./fonts.scss";
 @import "./vars.scss";
 @import "./reset.scss";
-@import "nouislider/dist/nouislider.css";
 
 html {
   scroll-behavior: smooth;
@@ -149,6 +148,10 @@ section {
     gap: 10px;
   }
 
+  &__filter {
+    margin-left: 15px;
+  }
+
   &__btn {
     cursor: pointer;
     input {
@@ -163,6 +166,18 @@ section {
     svg {
       fill: #828d99;
       transition: all 0.3s ease-in-out;
+    }
+  }
+
+  @include mediumMobile {
+    // flex-wrap: wrap;
+    // .search {
+    //   width: 100%;
+    //   order: 5;
+    // }
+
+    &__btns {
+      display: none;
     }
   }
 }
@@ -220,5 +235,13 @@ section {
     font-size: 12px;
     font-weight: 500;
     background-color: #ffebeb;
+  }
+
+  @include mobile {
+    flex-direction: column;
+
+    &__img {
+      margin: 0 auto;
+    }
   }
 }

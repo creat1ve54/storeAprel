@@ -77,6 +77,7 @@ import type { IGenre, IEpisodes } from "~/models/models";
 
 const emit = defineEmits(["changeEpisodes", "changeGeneres", "changeRanking"]);
 
+
 const genres = ref<IGenre[]>([
   {
     id: 1,
@@ -251,6 +252,14 @@ const changeRanking = (values: Array<number>, p0: number, p1: number) => {
         transform: rotate(180deg);
         transition: all 0.3s ease-in-out;
       }
+    }
+  }
+
+  @include mobile {
+    .filter-price {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

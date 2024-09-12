@@ -1,10 +1,8 @@
 <template>
 
-  <p class="filter-price"></p>
+  <p class="filter-price" ref="filterPrice"></p>
 </template>
 <script setup lang="ts">
-import noUiSlider from "nouislider";
-import wNumb from "wNumb";
 
 const slider = ref(null as unknown as HTMLElement as any);
 
@@ -25,32 +23,10 @@ const props = defineProps({
 
 const emit = defineEmits(["changeRanking"]);
 
+const filterPrice = ref<HTMLElement | null>(null)
+
 onMounted(() => {
-  // if (slider.value) {
-  //   noUiSlider.create(slider.value, {
-  //     start: [0, 100],
-  //     connect: true,
-  //     range: {
-  //       min: props.min,
-  //       max: props.max,
-  //     },
-  //     tooltips: [true, wNumb({ prefix: "$", decimals: 0 })],
-  //     format: wNumb({
-  //       prefix: "$",
-  //       decimals: 0,
-  //     }),
-  //   });
-
-  //   slider.value.noUiSlider.on(
-  //     "update",
-  //     function (values: Array<string>, handle: number) {
-  //       const res = values.map((x) => x.slice(1));
-  //       emit("changeRanking", res);
-  //     }
-  //   );
-  // }
-
-  let paragraph = document.querySelector(".filter-price"),
+  let paragraph = filterPrice.value,
     text = document.createElement("label"),
     minPriceSpan = document.createElement("span"),
     maxPriceSpan = document.createElement("span"),

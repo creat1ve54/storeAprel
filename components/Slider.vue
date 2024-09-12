@@ -3,9 +3,6 @@
   <p class="filter-price" ref="filterPrice"></p>
 </template>
 <script setup lang="ts">
-
-const slider = ref(null as unknown as HTMLElement as any);
-
 const props = defineProps({
   value: {
     type: Array<Number>,

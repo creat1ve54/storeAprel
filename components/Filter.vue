@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div class="filter">
     <div class="filter__header">
       <div class="filter__title">Filters</div>
@@ -8,38 +8,39 @@
     </div>
     <Accordion class="filter__item filter__item--padding">
       <template v-slot:header>
-        Price
+        Rating
         <svg width="12" height="7" stroke="#292D32">
           <use xlink:href="~/assets/icons/sprite.svg#arrow-up"></use>
         </svg>
       </template>
       <template v-slot:content>
-        <div class="filter__item-container">
+        <div class="filter__container">
           <Slider
-            :value="[0, 400]"
+            :value="[0, 1000]"
             :min="0"
-            :max="400"
-            @changePrice="changePrice($event, 0, 400)"
+            :max="1000"
+            @changeRanking="changeRanking($event, 0, 1000)"
           />
         </div>
       </template>
     </Accordion>
     <Accordion class="filter__item">
       <template v-slot:header>
-        Colors
+        Genre
         <svg width="12" height="7" stroke="#292D32">
           <use xlink:href="~/assets/icons/sprite.svg#arrow-up"></use>
         </svg>
       </template>
       <template v-slot:content>
-        <div class="filter__item-container">
-          <div class="filter__item-colors">
-            <div v-for="color in colors" class="color">
-              <label :style="{ background: color.name }">
+        <div class="filter__container">
+          <div class="filter__list">
+            <div v-for="genre in genres" class="filter__change">
+              <label>
                 <input
                   type="checkbox"
-                  @change="(e) => onChangeColor(color, e)"
+                  @change="(e) => onChangeGeneres(genre, e)"
                 />
+                <span>{{ genre.name }}</span>
               </label>
             </div>
           </div>
@@ -48,18 +49,21 @@
     </Accordion>
     <Accordion class="filter__item">
       <template v-slot:header>
-        Size
+        Episode
         <svg width="12" height="7" stroke="#292D32">
           <use xlink:href="~/assets/icons/sprite.svg#arrow-up"></use>
         </svg>
       </template>
       <template v-slot:content>
-        <div class="filter__item-container">
-          <div class="filter__item-sizes">
-            <div v-for="size in sizes" class="size">
+        <div class="filter__container">
+          <div class="filter__list">
+            <div v-for="episode in episodes" class="filter__change">
               <label>
-                <input type="checkbox" @change="(e) => onChangeSize(size, e)" />
-                <span>{{ size.name }}</span>
+                <input
+                  type="checkbox"
+                  @change="(e) => onChangeEpisodes(episode, e)"
+                />
+                <span>{{ episode.name }}</span>
               </label>
             </div>
           </div>
@@ -69,132 +73,104 @@
   </div>
 </template>
 <script setup lang="ts">
-const emit = defineEmits(["changeSize", "changeColor", "changePrice"]);
+import type { IGenre, IEpisodes } from "~/models/models";
 
-interface IColor {
-  id: number;
-  name: string;
-  code: string;
-}
+const emit = defineEmits(["changeEpisodes", "changeGeneres", "changeRanking"]);
 
-interface ISize {
-  id: number;
-  name: string;
-  code: string;
-}
-
-const colors = ref<IColor[]>([
+const genres = ref<IGenre[]>([
   {
     id: 1,
-    name: "#00C12B",
-    code: "Green",
+    name: "Drama",
   },
   {
     id: 2,
-    name: "#F50606",
-    code: "Red",
+    name: "Fantasy",
   },
   {
     id: 3,
-    name: "#F5DD06",
-    code: "Yellow",
+    name: "Action",
   },
   {
     id: 4,
-    name: "#F57906",
-    code: "Orange",
+    name: "Award Winning",
   },
   {
     id: 5,
-    name: "#06CAF5",
-    code: "Turquoise",
+    name: "Supernatural",
   },
   {
     id: 6,
-    name: "#063AF5",
-    code: "Blue",
+    name: "Adventure",
   },
   {
     id: 7,
-    name: "#7D06F5",
-    code: "Purple",
+    name: "Western",
   },
   {
     id: 8,
-    name: "#F506A4",
-    code: "Pink",
-  },
-  {
-    id: 9,
-    name: "#000000",
-    code: "Black",
+    name: "Sci-Fi",
   },
 ]);
 
-const sizes = ref<ISize[]>([
+const episodes = ref<IEpisodes[]>([
   {
     id: 1,
-    name: "X-Small",
-    code: "XS",
+    name: 1,
   },
   {
     id: 2,
-    name: "Small",
-    code: "S",
+    name: 51,
   },
   {
     id: 3,
-    name: "Medium",
-    code: "M",
+    name: 13,
   },
   {
     id: 4,
-    name: "Large",
-    code: "L",
+    name: 10,
   },
   {
     id: 5,
-    name: "X-Large",
-    code: "XL",
+    name: 25,
   },
 ]);
 
-const checkedColors = ref<IColor[]>([]);
-const checkedSizes = ref<ISize[]>([]);
+const checkedGenres = ref<IGenre[]>([]);
+const checkedEpisodes = ref<IEpisodes[]>([]);
 
-const onChangeColor = (color: IColor, e: Event) => {
-  let array = checkedColors.value;
-
-  let checked = (e.target as HTMLInputElement).checked;
-
-  if (checked) {
-    array.push(color);
-  } else {
-    array = checkedColors.value.filter((item) => item.id != color.id);
-  }
-  checkedColors.value = array;
- 
-  emit("changeColor", checkedColors.value);
-};
-
-const onChangeSize = (size: IColor, e: Event) => {
-  let array = checkedSizes.value;
+const onChangeGeneres = (genre: IGenre, e: Event) => {
+  let array = checkedGenres.value;
 
   let checked = (e.target as HTMLInputElement).checked;
 
   if (checked) {
-    array.push(size);
+    array.push(genre);
   } else {
-    array = checkedSizes.value.filter((item) => item.id != size.id);
+    array = checkedGenres.value.filter((item) => item.id != genre.id);
   }
-  checkedSizes.value = array;
+  checkedGenres.value = array;
 
-  emit("changeSize", checkedSizes.value);
+  emit("changeGeneres", checkedGenres.value);
 };
 
-const changePrice = (values: any) => {
-  emit("changePrice", values);
-}
+const onChangeEpisodes = (episode: IEpisodes, e: Event) => {
+  let array = checkedEpisodes.value;
+
+  let checked = (e.target as HTMLInputElement).checked;
+
+  if (checked) {
+    array.push(episode);
+  } else {
+    array = checkedEpisodes.value.filter((item) => item.id != episode.id);
+  }
+  checkedEpisodes.value = array;
+
+  emit("changeEpisodes", checkedEpisodes.value);
+};
+
+const changeRanking = (values: Array<number>, p0: number, p1: number) => {
+  emit("changeRanking", values);
+};
 </script>
 <style scoped lang="scss">
 .filter {
@@ -216,32 +192,44 @@ const changePrice = (values: any) => {
     margin-bottom: 24px;
   }
 
-  &__item {
+  &__list {
     border-top: 1px solid #d9d9d9;
     padding-top: 24px;
     margin-bottom: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 
-    &-colors {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
+  &__change {
+    input {
+      display: none;
     }
 
-    &-sizes {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+    input:checked ~ span {
+      background-color: #000000;
+      color: #ffffff;
     }
 
-    &-container {
-      padding: 20px 0px 0px 0px;
+    span {
+      cursor: pointer;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 20px;
+      background-color: #f0f0f0;
+      font-size: 14px;
     }
+  }
 
+  &__container {
+    padding: 20px 0px 0px 0px;
+  }
+
+  &__item {
+    margin-bottom: 24px;
     &--padding {
-      .filter__item {
-        &-container {
-          padding: 20px 22px 0px 22px;
-        }
+      .filter__container {
+        padding: 20px 22px 0px 22px;
       }
     }
   }

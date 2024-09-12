@@ -13,19 +13,19 @@
       <div class="card-detail">
         <div class="card-detail__left">
           <div class="card-detail__img">
-            <img :src="images[`${card.imgSrc}`]" :alt="card.name" />
+            <img :src="film.image" :alt="film.title" />
           </div>
         </div>
         <div class="card-detail__right">
           <div class="card-detail__info">
-            <div class="card-detail__title">{{ card.name }}</div>
-            <div class="card-detail__descr">{{ card.descr }}</div>
+            <div class="card-detail__title">{{ film.title }}</div>
+            <div class="card-detail__descr">{{ film.description }}</div>
             <div class="card-detail__prices">
-              <div class="card-detail__new">${{ card.price }}</div>
-              <div class="card-detail__old" v-if="card.oldPrice">
+              <div class="card-detail__new">{{ film.rating }}</div>
+              <!-- <div class="card-detail__old" v-if="card.oldPrice">
                 ${{ card.oldPrice }}
               </div>
-              <div class="card-detail__sale" v-if="card.sale">-{{ card.sale }}%</div>
+              <div class="card-detail__sale" v-if="card.sale">-{{ card.sale }}%</div> -->
             </div>
           </div>
         </div>
@@ -36,14 +36,20 @@
 <script setup lang="ts">
 import { VueFinalModal } from "vue-final-modal";
 import { filename } from "pathe/utils";
+import type { IFilm } from "~/models/models";
 const emit = defineEmits(["close"]);
 
-const props = defineProps(["card"]);
+const props = defineProps({
+  film: {
+    type: Object as PropType<IFilm> | null,
+    required: true,
+  },
+});
 
-const glob = import.meta.glob("@/assets/images/catalog/*.png", { eager: true });
-const images = Object.fromEntries(
-  Object.entries(glob).map(([key, value]) => [filename(key), value.default])
-);
+// const glob = import.meta.glob("@/assets/images/catalog/*.png", { eager: true });
+// const images = Object.fromEntries(
+//   Object.entries(glob).map(([key, value]) => [filename(key), value.default])
+// );
 </script>
 
 <style scoped lang="scss">

@@ -1,14 +1,21 @@
-export interface ICard {
+export interface IFilm {
+  id: number;
+  synopsis: string;
+  image: string,
+  genres: Array<string>,
+  link: string,
+  ranking: number,
+  title: string,
+  episodes: number,
+}
+
+
+export interface IGenre {
   id: number;
   name: string;
-  imgSrc: string,
-  descr: string,
-  price: number,
-  oldPrice: number | null,
-  sale: number | null,
-  options: {
-    size: string,
-    color: string,
-    clothing: string,
-  }
+}
+
+export interface IEpisodes {
+  id: number;
+  name: number;
 }

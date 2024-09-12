@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "concurrently \"set PORT=3006 && nuxt dev\" \"npx json-server db.json\"",
+    
+    "dev": "concurrently \"set PORT=3006 && nuxt dev\"",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -25,3 +26,4 @@
     "sass-embedded": "^1.78.0"
   }
 }
+

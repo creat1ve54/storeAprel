@@ -123,25 +123,25 @@ section {
   }
 }
 
-.size {
-  input {
-    display: none;
-  }
+// .size {
+//   input {
+//     display: none;
+//   }
 
-  input:checked ~ span {
-    background-color: #000000;
-    color: #ffffff;
-  }
+//   input:checked ~ span {
+//     background-color: #000000;
+//     color: #ffffff;
+//   }
 
-  span {
-    cursor: pointer;
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 20px;
-    background-color: #f0f0f0;
-    font-size: 14px;
-  }
-}
+//   span {
+//     cursor: pointer;
+//     display: inline-block;
+//     padding: 10px 20px;
+//     border-radius: 20px;
+//     background-color: #f0f0f0;
+//     font-size: 14px;
+//   }
+// }
 
 .sort {
   &__btns {

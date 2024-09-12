@@ -1,14 +1,16 @@
 import { defineStore } from "pinia";
-import { catalogAPI } from "~/api/axios";
+import { filmsAPI } from "~/api/axios";
 
-export const useCatalogStore = defineStore("catalog", {
+export const useFilmsStore = defineStore("films", {
   state: () => ({
-    cards: [],
+    films: [],
   }),
   actions: {
     async getCards() {
-      const cards = (await catalogAPI.getCatalog()).data;
-      this.cards = cards;
+      // const films = (await filmsAPI.getFilms()).data.data;
+      // console.log(films);
+      
+      // this.films = films;
     },
   },
 });

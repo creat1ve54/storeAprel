@@ -1,43 +1,46 @@
 <template>
   <div class="card" >
     <div class="card__img"@click="onOpen">
-      <img :src="images[`${card.imgSrc}`]" :alt="card.name" />
+      <!-- <img :src="images[`${film.}`]" :alt="film.name" /> -->
+      <img :src="film.image" :alt="film.title" />
     </div>
     <div class="card__info">
-      <div class="card__title" @click="onOpen">{{ card.name }}</div>
-      <div class="card__descr">{{ card.descr }}</div>
+      <div class="card__title" @click="onOpen">{{ film.title }}</div>
+      <div class="card__descr">{{ film.synopsis }}</div>
       <div class="card__prices">
-        <div class="card__new">${{ card.price }}</div>
-        <div class="card__old" v-if="card.oldPrice">${{ card.oldPrice }}</div>
-        <div class="card__sale" v-if="card.sale">-{{ card.sale }}%</div>
+        <div class="card__new">Rating: {{ film.ranking }}</div>
+        <!-- <div class="card__old" v-if="film.oldPrice">${{ film.oldPrice }}</div>
+        <div class="card__sale" v-if="film.sale">-{{ film.sale }}%</div> -->
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import type { ICard } from "~/models/models";
+import type { IFilm } from "~/models/models";
 import { filename } from "pathe/utils";
 
 import { useModal } from "vue-final-modal";
 import ModalItem from "~/components/ModalItem.vue";
 
-const glob = import.meta.glob("@/assets/images/catalog/*.png", { eager: true });
-const images = Object.fromEntries(
-  Object.entries(glob).map(([key, value]) => [filename(key), value.default])
-);
+// const glob = import.meta.glob("@/assets/images/catalog/*.png", { eager: true });
+// const images = Object.fromEntries(
+//   Object.entries(glob).map(([key, value]) => [filename(key), value.default])
+// );
 
 const props = defineProps({
-  card: {
-    type: Object as PropType<ICard> | null,
+  film: {
+    type: Object as PropType<IFilm> | null,
     required: true,
   },
 });
+
+
 
 function onOpen() {
   const { open, close } = useModal({
     component: ModalItem,
     attrs: {
-      card: props.card,
+      film: props.film,
       onClose: () => close(),
     },
   });

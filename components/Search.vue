@@ -14,23 +14,23 @@
   </div>
 </template>
 <script setup lang="ts">
-import type { ICard } from "~/models/models";
+import type { IFilm } from "~/models/models";
 
-const props = defineProps(["cardsInit"]);
+const props = defineProps(["filmsInit"]);
 
 const emit = defineEmits(["onSearch"]);
 
 const onSearch = (e: Event) => {
   const text = (e.target as HTMLInputElement).value;
-  // let items = [];
-  // if (text) {
-  //   items = props.cardsInit.filter(
-  //     (item: ICard) => item.name.toLowerCase().indexOf(text.toLowerCase()) != -1
-  //   );
-  // } else {
-  //   items = props.cardsInit;
-  // }
-  // emit("onSearch", items);
+  let items = [];
+  if (text) {   
+    items = props.filmsInit.filter(
+      (item: IFilm) => item.title.toLowerCase().indexOf(text.toLowerCase()) != -1
+    );
+  } else {
+    items = props.filmsInit;
+  }
+  emit("onSearch", items);
   emit("onSearch", text);
 };
 </script>

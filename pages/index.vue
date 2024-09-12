@@ -1,12 +1,12 @@
 <template>
-  <section class="catalog">
+  <section class="films">
     <div class="container">
       <div class="flex">
         <div class="flex__left">
           <Filter
-            @changeSize="changeSize"
-            @changeColor="changeColor"
-            @changePrice="changePrice"
+            @changeEpisodes="changeEpisodes"
+            @changeGeneres="changeGeneres"
+            @changeRanking="changeRanking"
           />
         </div>
         <div class="flex__right">
@@ -14,7 +14,7 @@
             <div class="sort__title">Casual</div>
             <Search
               @onSearch="onSearch"
-              :cardsInit="catalogInstallatios.cards"
+              :filmsInit="filmsInstallatios.films"
             />
             <div class="sort__btns">
               <label class="sort__btn">
@@ -65,16 +65,16 @@
           <div
             :class="
               long
-                ? 'catalog__items catalog__items--list'
-                : 'catalog__items catalog__items--card'
+                ? 'films__items films__items--list'
+                : 'films__items films__items--card'
             "
           >
-            <Item v-for="card in cards" :card="card" />
+            <!-- <Item v-for="film in films" :film="film" /> -->
           </div>
           <Pagination
             :currentPage="currentPage"
             :itemsPerPage="itemsPerPage"
-            :itemsLength="cardsInit.length"
+            :itemsLength="filmsInit.length"
             @changePage="changePage"
           />
         </div>
@@ -83,8 +83,8 @@
   </section>
 </template>
 <script setup lang="ts">
-import type { ICard } from "~/models/models";
-import { useCatalogStore } from "~/store/catalog";
+import type { IFilm, IGenre, IEpisodes } from "~/models/models";
+import { useFilmsStore } from "~/store/catalog";
 
 let long = ref(false as Boolean);
 
@@ -95,25 +95,34 @@ function changeGrid() {
 function changeColumn() {
   long.value = true;
 }
-const catalogInstallatios = useCatalogStore();
-await catalogInstallatios.getCards();
+const filmsInstallatios = useFilmsStore();
+await filmsInstallatios.getCards();
 
 const currentPage = ref(1);
-const itemsPerPage = ref(7);
+const itemsPerPage = ref(10);
 
-const cardsInit = ref<ICard[]>(catalogInstallatios.cards);
+const filmsInit = ref<IFilm[]>(filmsInstallatios.films);
+
+
 
 const options = ref({
   search: "",
-  price: [0, 400],
-  sizes: [],
-  colors: [],
+  ranking: [0, 100],
+  genres:  <IGenre[]>[],
+  episodes: <IEpisodes[]>[],
 });
 
-const cards = computed(() => {
+const films = computed(() => {
   const startIndex = (currentPage.value - 1) * itemsPerPage.value;
   const endIndex = startIndex + itemsPerPage.value;
-  return cardsInit.value.slice(startIndex, endIndex);
+
+  console.log(itemsPerPage.value);
+  
+  // console.log(startIndex);
+  // console.log(endIndex);
+  
+
+  return filmsInit.value.slice(startIndex, endIndex);
 });
 
 const changePage = (pageNumber: number) => {
@@ -122,44 +131,44 @@ const changePage = (pageNumber: number) => {
 
 const onSearch = (text: string) => {
   options.value.search = text;
-  onOptions(cardsInit.value);
+  onOptions(filmsInit.value);
 };
 
-const onOptions = (item: ICard[]) => {
-  cardsInit.value = catalogInstallatios.cards.filter((item: ICard) => {
-    const matchesColor = options.value.colors.length
-      ? options.value.colors.some((color) => color.code === item.options.color)
+const onOptions = (item: IFilm[]) => {
+  filmsInit.value = filmsInstallatios.films.filter((item: IFilm) => {
+    const matchesGenres = options.value.genres.length
+      ? options.value.genres.some((genre) => item.genres.some((genreItem) => genre.name === genreItem))
       : true;
 
-    const matchesSize = options.value.sizes.length
-      ? options.value.sizes.some((size) => size.code === item.options.size)
+    const matchesEpisodes = options.value.episodes.length
+      ? options.value.episodes.some((episodes) => episodes.name === item.episodes)
       : true;
 
-    const matchesSearchQuery = item.name
+    const matchesSearchQuery = item.title
       .toLowerCase()
-      .includes(options.value.search.toLowerCase());
+      .includes(options.value.search.toString().toLowerCase());
 
-    const matchesPrice =
-      item.price >= options.value.price[0] &&
-      item.price <= options.value.price[1];
+    const matchesRanking =
+      item.ranking >= options.value.ranking[0] &&
+      item.ranking <= options.value.ranking[1];
 
-    return matchesColor && matchesSize && matchesSearchQuery && matchesPrice;
+    return  matchesEpisodes  && matchesGenres && matchesSearchQuery && matchesRanking;
   });
 };
 
-const changeSize = (sizes: any) => {
-  options.value.sizes = sizes;
-  onOptions(cardsInit.value);
+const changeGeneres = (genres: IGenre[]) => {
+  options.value.genres = genres;
+  onOptions(filmsInit.value);
 };
 
-const changeColor = (colors: any) => {
-  options.value.colors = colors;
-  onOptions(cardsInit.value);
+const changeEpisodes = (episodes: IEpisodes[]) => {
+  options.value.episodes = episodes;
+  onOptions(filmsInit.value);
 };
 
-const changePrice = (price: any) => {
-  options.value.price = price;
-  onOptions(cardsInit.value);
+const changeRanking = (ranking: Array<number>) => {
+  options.value.ranking = ranking;
+  onOptions(filmsInit.value);
 };
 
 watch(currentPage, () => {
@@ -170,7 +179,7 @@ watch(currentPage, () => {
 });
 </script>
 <style lang="scss">
-.catalog {
+.films {
   margin-top: 40px;
   &__items {
     margin-bottom: 40px;
